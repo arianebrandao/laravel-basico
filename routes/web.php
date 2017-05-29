@@ -11,9 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', 'Site\SiteController@index');
+
+Route::group(['namespace' => 'Site'], function (){
+	Route::get('/', 'SiteController@index');
+	Route::get('/contato', 'SiteController@contato');
+	Route::get('/categoria/{idCategoria}', 'SiteController@categoria');
+	Route::get('/categoria2/{idCategoria?}', 'SiteController@categoriaOp');
 });
+
+Route::resource('painel/produtos/', "Painel\ProdutoController");
 
 Route::get('/empresa', function(){
 	return view('empresa');
@@ -31,18 +38,8 @@ Route::get('/redireciona', function(){
 	return redirect()->route('rota.nomeada');
 });
 
-
-Route::get('/categoria/{idCategoria}', function($idCategoria){
-	return "Posts da categoria {$idCategoria}";
-});
-
 Route::get('/categoria/{idCategoria}/nome-fixo/{prm2}', function($idCategoria, $prm2){
 	return "Posts da categoria {$idCategoria} - {$prm2}";
-});
-
-//valor opcional
-Route::get('/categoria2/{idCategoria?}', function($idCategoria=null){
-	return "Posts da categoria {$idCategoria}";
 });
 
 //grupo de rotas
@@ -58,6 +55,6 @@ Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function(){
 	});
 });
 
-Route::get('/login', function(){
+Route::get('login', function(){
 	return "Formulário de login";
 });
