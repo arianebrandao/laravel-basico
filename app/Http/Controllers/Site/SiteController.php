@@ -29,11 +29,22 @@ class SiteController extends Controller
 
     public function index()
     {
-    	return view('welcome');
+    	//return view('welcome');
+        
+        $teste = 123;
+        $teste2 = 321;
+        $teste3 = 132;
+        $title = 'Titulo teste';
+        $xss = "<script>alert('Ataque XSS');</script>";
+        $var1 = '123';
+        $arrayData = [1,2,3,4,5,6,7,8,9];
+        //return view('teste', ['teste' => $teste, 'teste2' => $teste2]);
+        //return view('site.index', compact('teste','teste2', 'teste3'));
+        return view('site.index', compact('title', 'xss','var1','arrayData'));
     }
     public function contato()
     {
-    	return 'página contato';
+    	return view('site.contato');
     }
     public function categoria($idCategoria)
     {
