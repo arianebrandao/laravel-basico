@@ -97,6 +97,7 @@ class ProdutoController extends Controller
     
     public function tests()
     {
+        //INSERT
         /*
         $prod = $this->produto;
         $prod->nome = 'Nomee do produto';
@@ -129,6 +130,68 @@ class ProdutoController extends Controller
          * 
          */
         
+        //UPDATE
+        /*
+        $prod = $this->produto->find(3);
+        //dd($prod);
         
+        $prod->nome = 'Nome Atualizado';
+        $prod->numero = 1111;
+        $prod->ativo = true;
+        $prod->categoria = 'eletronicos';
+        $prod->descricao = 'Descrição do produto aqui UPDATE';
+        $update = $prod->save();
+        
+        if($update)
+            return "Alterado com sucesso.";
+        else
+            return "Falha ao alterar.";
+        
+         * 
+         */
+        
+        /*
+        
+        $prod = $this->produto->find(4);
+        $update = $prod->update([
+                        'nome'      => 'Produto2 UPDATE22',
+                        'numero'    => 444,
+                        'ativo'     => true,
+        ]);
+        
+        if($update)
+            return "Alterado com sucesso.2";
+        else
+            return "Falha ao alterar.2";
+         * 
+         */
+        
+        /*
+        $prod = $this->produto->where('numero','=',12);
+        $update = $prod->update([
+                        'nome'      => 'Sabonete 2',
+                        'numero'    => 1212,
+                        'ativo'     => true,
+        ]);
+        
+        if($update)
+            return "Alterado com sucesso.3";
+        else
+            return "Falha ao alterar.3";
+        
+         * 
+         */
+        
+        //DELETAR
+        $prod = $this->produto->find(3);
+        $delete = $prod->delete();
+        //$prod = $this->produto->where('numero',444)->delete();
+        
+        if($delete)
+            return "Deletado com sucesso";
+        else
+            return "Falha ao deletar";
+        //ou simplesmente:
+        //$prod = $this->produto->destroy([3,5,6]);
     }
 }
