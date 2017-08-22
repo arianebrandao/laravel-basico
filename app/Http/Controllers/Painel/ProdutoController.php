@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Painel;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Painel\Produto;
+use App\Http\Requests\Painel\ProdutoFormRequest;
 
 class ProdutoController extends Controller
 {
@@ -36,7 +37,9 @@ class ProdutoController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Cadastrar novo produto";
+        $categorias = ['eletronicos','moveis','limpeza','banho'];
+        return view('painel.produtos.create', compact('title','categorias'));
     }
 
     /**
@@ -45,9 +48,40 @@ class ProdutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProdutoFormRequest $request)
     {
-        //
+        //dd() para fazer debug
+        //dd($request->all());
+        //dd($request->only(['nome','numero']));
+        //dd($request->except(['nome','numero']));
+        //dd($request->input('nome'));
+        
+        //pega todos os dados do formulario
+        $dataForm = $request->all();
+        
+        $dataForm['ativo'] = (!isset($dataForm['ativo'])) ? 0 : 1;
+        
+
+        //valida os dados
+        //$this->validate($request, $this->produto->rules);
+        /*
+        $validate = validator($dataForm, $this->produto->rules, $this->produto->messages);
+        if($validate->fails()){
+            return redirect()
+                    ->route('produtos.create')
+                    ->withErrors($validate)
+                    ->withInput();
+        }
+         * 
+         */
+        
+        //faz o cadastro
+        $insert = $this->produto->create($dataForm);
+        
+        if($insert)
+            return redirect()->route('produtos.index');
+        else
+            return redirect()->back();
     }
 
     /**

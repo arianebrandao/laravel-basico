@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Site'], function (){
 });
 
 Route::get('/painel/produtos/teste',"Painel\ProdutoController@tests");
-Route::resource('painel/produtos/', "Painel\ProdutoController");
+Route::resource('/painel/produtos', "Painel\ProdutoController");
 
 Route::get('/empresa', function(){
 	return view('empresa');

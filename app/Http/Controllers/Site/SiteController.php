@@ -34,7 +34,7 @@ class SiteController extends Controller
         $teste = 123;
         $teste2 = 321;
         $teste3 = 132;
-        $title = 'Titulo teste';
+        $title = 'Titulo teste 222';
         $xss = "<script>alert('Ataque XSS');</script>";
         $var1 = '123';
         $arrayData = [1,2,3,4,5,6,7,8,9];

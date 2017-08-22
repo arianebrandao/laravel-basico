@@ -15,4 +15,6 @@ class Produto extends Model
     
     //quais campos não podem ser inseridos
     //protected $guarded = ['admin'];
+    
+    //regras de validacao no ProdutoFormRequest
 }
