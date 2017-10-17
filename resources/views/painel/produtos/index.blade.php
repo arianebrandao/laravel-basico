@@ -17,14 +17,15 @@
         <td>{{$p->nome}}</td>
         <td>{{$p->descricao}}</td>
         <td>
-            <a href="#" class="edit action">
+            <a href="{{route('produtos.edit', $p->id)}}" class="edit action">
                 <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
             </a>
-            <a href="#" class="delete action">
-                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <a href="{{ route('produtos.show', $p->id) }}" class="delete action">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
             </a>
         </td>
     </tr>
     @endforeach
 </table>
+{{ $produtos->links() }}
 @endsection
