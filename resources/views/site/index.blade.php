@@ -3,6 +3,9 @@
 @section('content')
 
     <h1>Home page do site !!</h1>
+    
+    <h3><a href="{{ url('/painel/produtos/') }}">Ir para Produtos</a></h3>
+    
     {{$var2 or 'var2 Não existe.'}}
     {{ $xss }}
     
